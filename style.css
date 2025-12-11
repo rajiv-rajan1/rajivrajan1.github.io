@@ -571,6 +571,24 @@ body {
     font-weight: 500;
 }
 
+/* Calculation Note */
+.calculation-note {
+    margin-top: 1.5rem;
+    padding: 1rem 1.5rem;
+    background: rgba(79, 172, 254, 0.08);
+    /* Blue accent background */
+    border-radius: var(--radius-md);
+    border-left: 3px solid var(--color-accent-secondary);
+    font-size: 0.9rem;
+    color: var(--color-text-primary);
+}
+
+.calc-details {
+    margin-top: 0.4rem;
+    font-size: 0.85rem;
+    color: var(--color-text-secondary);
+}
+
 /* Animations */
 @keyframes fadeInDown {
     from {
