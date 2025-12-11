@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="Calculate your KCET ranking based on Class 12 PCM marks and KCET exam scores using the official 50:50 weightage formula.">
+    <meta name="keywords" content="KCET, Karnataka CET, ranking calculator, engineering entrance, PCM marks">
+    <title>KCET Ranking Calculator | Estimate Your Rank</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="background-gradient"></div>
+
+    <main class="container">
+        <header class="header">
+            <div class="header-disclaimer left">
+                <p><strong>Disclaimer:</strong> Estimates based on previous years' data (2022-2024). Not confirmatory.
+                </p>
+            </div>
+            <div class="header-main">
+                <h1 class="title">
+                    <span class="title-icon">🎓</span>
+                    KCET Ranking Calculator
+                </h1>
+                <p class="subtitle">Calculate your estimated KCET rank (50:50 Weightage)</p>
+            </div>
+            <div class="header-disclaimer right">
+                <p class="warranty-text">Provided "as is" without warranty. Actual results may vary.</p>
+            </div>
+        </header>
+
+        <div class="split-layout">
+            <!-- Left Panel: Input Form -->
+            <div class="card form-card">
+                <form id="kcetForm" class="form">
+                    <div class="form-section">
+                        <label for="pcmMarks" class="label">
+                            <span class="label-text">Total PCM Marks <span id="pcmLiveFeedback"
+                                    class="live-feedback"></span></span>
+                            <span class="label-hint">Out of 300</span>
+                        </label>
+                        <div class="input-group">
+                            <input type="number" id="pcmMarks" name="pcmMarks" min="0" max="300" step="0.01"
+                                placeholder="e.g. 290" required class="input">
+                            <span class="input-suffix">/300</span>
+                        </div>
+                        <span class="error-message" id="pcmError"></span>
+                    </div>
+
+                    <div class="form-section">
+                        <label for="kcetMarks" class="label">
+                            <span class="label-text">Total KCET Marks <span id="kcetLiveFeedback"
+                                    class="live-feedback"></span></span>
+                            <span class="label-hint">Out of 180</span>
+                        </label>
+                        <div class="input-group">
+                            <input type="number" id="kcetMarks" name="kcetMarks" min="0" max="180" step="0.01"
+                                placeholder="e.g. 150" required class="input">
+                            <span class="input-suffix">/180</span>
+                        </div>
+                        <span class="error-message" id="kcetError"></span>
+                    </div>
+
+                    <div class="form-section">
+                        <label for="category" class="label">
+                            <span class="label-text">Category</span>
+                        </label>
+                        <div class="input-group">
+                            <select id="category" name="category" required class="select">
+                                <option value="">Select Category...</option>
+                                <option value="General">General</option>
+                                <option value="OBC">OBC</option>
+                                <option value="SC">SC</option>
+                                <option value="ST">ST</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-actions">
+                        <button type="submit" class="btn-submit" id="calculateBtn">
+                            Calculate Rank
+                        </button>
+                        <button type="button" class="btn-secondary" id="resetBtn">
+                            Reset
+                        </button>
+                    </div>
+                </form>
+            </div>
+
+            <!-- Middle Panel: Analysis -->
+            <div class="card analysis-card" id="analysisCard">
+                <div id="resultsPlaceholder" class="results-placeholder">
+                    <div class="placeholder-icon">📊</div>
+                    <h3>Analysis</h3>
+                    <p>Enter marks to see analysis.</p>
+                </div>
+
+                <div id="results" class="results hidden">
+                    <div class="results-header">
+                        <h2 class="results-title">Analysis</h2>
+                    </div>
+
+                    <div class="results-grid">
+                        <div class="result-card">
+                            <div class="result-label">PCM %</div>
+                            <div class="result-value" id="pcmPercentage">--</div>
+                        </div>
+
+                        <div class="result-card">
+                            <div class="result-label">KCET %</div>
+                            <div class="result-value" id="kcetPercentage">--</div>
+                        </div>
+
+                        <div class="result-card highlight">
+                            <div class="result-label">Composite Score</div>
+                            <div class="result-value large" id="compositeScore">--</div>
+                            <div class="result-sublabel">50:50 Weightage</div>
+                        </div>
+
+                        <div class="result-card">
+                            <div class="result-label">Category</div>
+                            <div class="result-value" id="selectedCategory">--</div>
+                        </div>
+                    </div>
+
+                    <div class="divider"></div>
+
+                    <div class="section-header">
+                        <h4>Historical Context</h4>
+                    </div>
+                    <div id="historicalResultsGrid" class="historical-grid">
+                        <!-- Dynamic content -->
+                    </div>
+
+
+                </div>
+            </div>
+
+            <!-- Right Panel: Suggestions -->
+            <div class="card suggestions-card" id="suggestionsCard">
+                <div id="suggestionsPlaceholder" class="results-placeholder">
+                    <div class="placeholder-icon">🎓</div>
+                    <h3>Suggestions</h3>
+                    <p>College recommendations will appear here.</p>
+                </div>
+
+                <div id="suggestionsContent" class="hidden">
+                    <div class="results-header">
+                        <h2 class="results-title">Bangalore College Suggestions</h2>
+                        <p class="subtitle" style="font-size: 0.9rem; margin-top: 0.5rem;">Based on previous year
+                            cutoffs</p>
+                    </div>
+                    <div id="collegeSuggestionsGrid" class="suggestions-grid">
+                        <!-- Dynamic suggestions -->
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <footer class="footer">
+            <p>Based on the official KCET 50:50 weightage formula</p>
+        </footer>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
