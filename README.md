@@ -1,3 +1,5 @@
+> **Page is live at:** [https://rajiv-rajan1.github.io/rajivrajan1.github.io/](https://rajiv-rajan1.github.io/rajivrajan1.github.io/)
+
 # KCET Ranking Calculator 🎓
 
 A modern, web-based tool designed to estimate your Karnataka Common Entrance Test (KCET) rank based on the 2025 **50:50 Weightage** system. This application combines your Board (PUC/Class 12) marks and KCET Exam marks to provide a composite score and a predicted rank.
